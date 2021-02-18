@@ -5,7 +5,7 @@ from typing import List
 
 from pptx import Presentation
 from pptx.enum.shapes import MSO_SHAPE_TYPE
-from sqlalchemy import Column, String, Integer, Date
+from sqlalchemy import Column, String, Integer, Date, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -31,8 +31,8 @@ class Slide(Base):
     __tablename__ = 'slides'
 
     slide_id = Column(Integer, primary_key=True)
-    text = Column(List)
-    imgs = Column(List)
+    text = Column(String)
+    imgs = Column(String)
     deck_id = Column(Integer, ForeignKey('decks.id'))
 
     def __init__(self, slide_id, text, imgs, deck_id):
